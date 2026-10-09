@@ -82,8 +82,8 @@ See [install docs](https://audiobookshelf.org/docs/category/installation)
 This repo includes two Compose files:
 
 - `docker-compose.yml` builds and runs Audiobookshelf locally.
-- `docker-compose.nas.yml` runs the custom GHCR image on the NAS and includes the
-  Watchtower label used by the shared updater.
+- `docker-compose.nas.yml` builds and runs Audiobookshelf on the NAS and includes
+  the Watchtower label used by the shared updater.
 
 Local appdata is stored under `/Users/bensycamore/Local AppData/audiobookshelf`:
 
