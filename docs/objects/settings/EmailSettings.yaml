@@ -66,6 +66,10 @@ components:
           type: string
           description: The default "from" email address for outgoing emails.
           nullable: true
+        includeSeriesInFilename:
+          type: boolean
+          default: false
+          description: Include the first series name and optional sequence in ebook attachment filenames, formatted as "Series Name [sequence] - Book Title.ext". Books without a series keep their original filename.
         ereaderDevices:
           type: array
           description: List of configured e-reader devices.

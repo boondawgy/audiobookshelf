@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const Path = require('path')
+const { sanitizeFilename } = require('../utils/fileUtils')
 const Database = require('../Database')
 const Logger = require("../Logger")
 
@@ -36,7 +38,17 @@ class EmailManager {
     })
   }
 
-  async sendEBookToDevice(ebookFile, device, res) {
+  getAttachmentFilename(ebookFile, book) {
+    const originalFilename = ebookFile.metadata.filename
+    const series = book?.series?.[0]
+    if (!Database.emailSettings.includeSeriesInFilename || !series?.name || !book.title) return originalFilename
+
+    const sequence = series.bookSeries?.sequence
+    const position = sequence !== null && sequence !== undefined && sequence !== '' ? ` [${sequence}]` : ''
+    return sanitizeFilename(`${series.name}${position} - ${book.title}${Path.extname(originalFilename)}`) || originalFilename
+  }
+
+  async sendEBookToDevice(ebookFile, device, res, book) {
     Logger.info(`[EmailManager] Sending ebook "${ebookFile.metadata.filename}" to device "${device.name}"/"${device.email}"`)
     const transporter = this.getTransporter()
 
@@ -56,7 +68,7 @@ class EmailManager {
       html: '<div dir="auto"></div>',
       attachments: [
         {
-          filename: ebookFile.metadata.filename,
+          filename: this.getAttachmentFilename(ebookFile, book),
           path: ebookFile.metadata.path,
         }
       ]

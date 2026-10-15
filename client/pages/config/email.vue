@@ -64,6 +64,14 @@
           </div>
         </div>
 
+        <div class="flex items-center py-3">
+          <ui-toggle-switch labeledBy="email-settings-include-series" v-model="newSettings.includeSeriesInFilename" :disabled="savingSettings" />
+          <div class="pl-4">
+            <span id="email-settings-include-series">{{ $strings.LabelEmailSettingsIncludeSeriesInFilename }}</span>
+            <p class="text-sm text-gray-400">{{ $strings.LabelEmailSettingsIncludeSeriesInFilenameHelp }}</p>
+          </div>
+        </div>
+
         <div class="flex items-center justify-between pt-4">
           <ui-btn v-if="hasUpdates" :disabled="savingSettings" type="button" @click="resetChanges">{{ $strings.ButtonReset }}</ui-btn>
           <ui-btn v-else :loading="sendingTest" :disabled="savingSettings || !newSettings.host" type="button" @click="sendTestClick">{{ $strings.ButtonTest }}</ui-btn>
@@ -140,6 +148,7 @@ export default {
         user: null,
         pass: null,
         testAddress: null,
+        includeSeriesInFilename: false,
         fromAddress: null
       },
       newEReaderDevice: {
@@ -278,6 +287,7 @@ export default {
         user: this.newSettings.user,
         pass: this.newSettings.pass,
         testAddress: this.newSettings.testAddress,
+        includeSeriesInFilename: this.newSettings.includeSeriesInFilename,
         fromAddress: this.newSettings.fromAddress
       }
       this.savingSettings = true

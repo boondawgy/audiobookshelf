@@ -331,6 +331,8 @@
   "LabelEbooks": "Ebooks",
   "LabelEdit": "Edit",
   "LabelEmail": "Email",
+  "LabelEmailSettingsIncludeSeriesInFilename": "Include series in ebook attachment filename",
+  "LabelEmailSettingsIncludeSeriesInFilenameHelp": "Uses the first series: Series Name [number] - Book Title.epub. Books without a series keep their original filename.",
   "LabelEmailSettingsFromAddress": "From Address",
   "LabelEmailSettingsRejectUnauthorized": "Reject unauthorized certificates",
   "LabelEmailSettingsRejectUnauthorizedHelp": "Disabling SSL certificate validation may expose your connection to security risks, such as man-in-the-middle attacks. Only disable this option if you understand the implications and trust the mail server you are connecting to.",

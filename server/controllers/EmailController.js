@@ -121,7 +121,7 @@ class EmailController {
       return res.status(404).send('Ebook file not found')
     }
 
-    this.emailManager.sendEBookToDevice(ebookFile, device, res)
+    this.emailManager.sendEBookToDevice(ebookFile, device, res, libraryItem.media)
   }
 
   /**

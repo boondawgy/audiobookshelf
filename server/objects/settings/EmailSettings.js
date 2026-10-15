@@ -21,6 +21,7 @@ class EmailSettings {
     this.pass = null
     this.testAddress = null
     this.fromAddress = null
+    this.includeSeriesInFilename = false
 
     /** @type {EreaderDeviceObject[]} */
     this.ereaderDevices = []
@@ -39,6 +40,7 @@ class EmailSettings {
     this.pass = settings.pass
     this.testAddress = settings.testAddress
     this.fromAddress = settings.fromAddress
+    this.includeSeriesInFilename = !!settings.includeSeriesInFilename
     this.ereaderDevices = settings.ereaderDevices?.map((d) => ({ ...d })) || []
 
     // rejectUnauthorized added after v2.10.1 - defaults to true
@@ -58,6 +60,7 @@ class EmailSettings {
       pass: this.pass,
       testAddress: this.testAddress,
       fromAddress: this.fromAddress,
+      includeSeriesInFilename: this.includeSeriesInFilename,
       ereaderDevices: this.ereaderDevices.map((d) => ({ ...d }))
     }
   }
@@ -69,6 +72,7 @@ class EmailSettings {
       if (isNullOrNaN(payload.port)) payload.port = 465
       else payload.port = Number(payload.port)
     }
+    if (payload.includeSeriesInFilename !== undefined) payload.includeSeriesInFilename = !!payload.includeSeriesInFilename
     if (payload.secure !== undefined) payload.secure = !!payload.secure
     if (payload.rejectUnauthorized !== undefined) payload.rejectUnauthorized = !!payload.rejectUnauthorized
 
